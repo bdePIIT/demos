@@ -13,6 +13,7 @@ void main() {
   simpleTypes();
   nullableTypes();
   complexTypes();
+  constAndFinalVars();
 }
 
 /*****************************************************************************/
@@ -95,4 +96,40 @@ void complexTypes() {
   // listOfStr2.add(42); // is this possible?
   // listOfStr2.add(null); // is this possible?
   // print(listOfStr2[0].length);
+}
+
+void constAndFinalVars() {
+  var i = 42;
+  var l = [1, 2, 3];
+
+  // i = 43;
+  l.add(4);
+
+  final j = 42;
+  final m = [1, 2, 3];
+
+  // j = 43; -- cannot be changed
+  m.add(4); // can add attributes to mutable objects
+
+  const k = 42;
+  const n = [1, 2, 3];
+
+  var y = 42;
+
+  // k = 43; -- cannot be changed
+  // n.add(4); -- will produce an error! can't add to an unmodifiable list
+  print("Hello!");
+  print(identical(i, y)); // are they the same object in memory? they are!
+  print(identical(m, n));
+  print(identical([1, 2, 3], [1, 2, 3]));
+  print(identical(const [1, 2, 3], const [1, 2, 3]));
+  print(identical(m, const [1, 2, 3]));
+
+  // Equivalent values that are immutable (like ints) point to each other in memory
+  // Equivalent values that aren't immutable don't unless they are const.
+
+  // Final keeps you from replacing the value (but allows you to modify mutable objects)
+  // Constant makes something immutable
+
+  // Compile-time constants always get reused!
 }
