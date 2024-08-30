@@ -33,11 +33,11 @@ void simpleTypes() {
   // fpnum = inum;
 
   // type casting
-  // fpnum = inum as double; // type casting
+  fpnum = inum as double; // type casting -- won't work!!
 
-  // explicit type conversions
-  // inum = fpnum.toInt();
-  // fpnum = inum.toDouble();
+  // explicit type conversions -- does work!!
+  inum = fpnum.toInt();
+  fpnum = inum.toDouble();
 
   // more type conversions
   // inum = int.parse(snum);
@@ -66,11 +66,11 @@ void complexTypes() {
   var snum = '442';
 
   // what are the inferred types of the following?
-  var listOfNum     = [inum, fpnum, -5, 0.01];
+  var listOfNum     = [inum, fpnum, -5, 0.01]; // list of num-class objects
   var listOfStr     = [snum, 'mobile', 'app', 'dev'];
-  var listOfAll     = [inum, fpnum, snum];
-  var listOfUnknown = [];
-  var listOfStr2    = <String>[];
+  var listOfAll     = [inum, fpnum, snum]; // list of Objects
+  var listOfUnknown = []; // could hold anything -- dynamic! not good coding covention
+  var listOfStr2    = <String>[]; // List<String>
 
   print('listOfNum.runtimeType = ${listOfNum.runtimeType}');
   print('listOfStr.runtimeType = ${listOfStr.runtimeType}');
@@ -78,9 +78,9 @@ void complexTypes() {
   print('listOfUnknown.runtimeType = ${listOfUnknown.runtimeType}');
   print('listOfStr2.runtimeType = ${listOfStr2.runtimeType}');
 
-  // print(listOfNum[0] + 10);
-  // print(listOfAll[0] is int);
-  // print(listOfAll[0] + 10); // how to fix this?
+  print(listOfNum[0] + 10);
+  print(listOfAll[0] is int); // you can check to see if an object is a specific subclass!
+  print((listOfAll[0] as int) + 10);
 
   // print(listOfStr[0].length);
   // print(listOfAll[2] is String);
