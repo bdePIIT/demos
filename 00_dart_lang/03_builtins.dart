@@ -61,11 +61,11 @@ void strings() {
 
 void records() {
   (double,double)        point1 = (3.14, 2.71);
-  (double x, double y)   point2 = (3, 2);
-  ({double x, double y}) point3 = (x: 3, y: 2);
+  (double x, double y)   point2 = (3, 2); // x and y are for documentation only
+  ({double x, double y}) point3 = (x: 3, y: 2); // with {} and ':', we can reference x and y
   ({double w, double z}) point4 = (w: 4, z: 3);
 
-  var point5 = ('coordinates', x: 3.5, y: 2.1);
+  var point5 = ('coordinates', x: 3.5, y: 2.1); // string is unnamed, the numbers are named
 
   print(point1.runtimeType);
   print(point2.runtimeType);
@@ -73,7 +73,7 @@ void records() {
   print(point4.runtimeType);
   print(point5.runtimeType);
 
-  print('point1.x = ${point1.$1}, point1.y = ${point1.$2}');
+  print('point1.x = ${point1.$1}, point1.y = ${point1.$2}'); // indexing starts at index 1!!!! BAD
 
   print('point2.x = ${point2.$1}, point2.y = ${point2.$2}');
   // print('point2.x = ${point2.x}, point2.y = ${point2.y}');
@@ -83,8 +83,10 @@ void records() {
 
   print('point3.x = ${point3.x}, point3.y = ${point3.y}');
 
-  // point1 = point3; // how to fix this?
-  // point3 = point4; // how to fix this?
+  // point1 = point3; -- doesn't work, because point 3 is named and point 1 isn't.
+  point1 = (point3.x, point3.y);
+  // point3 = point4; -- names of attributes are different
+  point3 = (x:point4.w, y:point4.z);
 
   print('${point5.$1}: point5.x = ${point5.x}, point5.y = ${point5.y}');
 }
@@ -101,6 +103,13 @@ void collections() {
   print('List after adding yellow: $colors');
   print('List length: ${colors.length}');
 
+<<<<<<< Updated upstream
+=======
+  var moreColors = ['orange', 'purple'];
+  var allColors = [...colors, ...moreColors]; // ... (spread) operator concats entire list contentss
+  print('All colors: $allColors');
+
+>>>>>>> Stashed changes
   // Sets
   Set<int> numbers = {1, 2, 3, 4, 5};
   print('\nSet: $numbers');
@@ -118,6 +127,7 @@ void collections() {
     'Bob': 25,
     'Carol': 28,
   };
+
   print('\nMap: $ages');
   ages['David'] = 22;
   print('Map after adding David: $ages');
